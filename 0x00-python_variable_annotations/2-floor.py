@@ -1,4 +1,4 @@
-#!/usr/bin/env pyrhon3
+#!/usr/bin/env python3
 """
 Write a type-annotated function floor
 which takes a float n as argument and
