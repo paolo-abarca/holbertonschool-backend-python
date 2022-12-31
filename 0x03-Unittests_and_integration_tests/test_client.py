@@ -1,31 +1,35 @@
 #!/usr/bin/env python3
 """
-Familiarize yourself with the client.GithubOrgClient class
+test client modules
 """
-import unittest
-from parameterized import parameterized
-from unittest.mock import patch
 from client import GithubOrgClient
+import client
+from parameterized import parameterized, parameterized_class
+from unittest.mock import PropertyMock, patch, Mock, call
+import unittest
+from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(unittest.TestCase):
     """
-    declare the TestGithubOrgClient(unittest.TestCase) class
+    Github org client class
     """
 
-    @parameterized.expand([
-        ("google"),
-        ("abc")
-    ])
+    @parameterized.expand(
+        [
+            ("google", {"google": True}),
+            ("abc", {"abc": True}),
+        ]
+    )
     @patch("client.get_json")
-    def test_org(self, org_name, mock_get_json):
+    def test_org(self, org, expected, mock_request):
         """
-        implement method test_org with test org
+        test org method
         """
-        url = "https://api.github.com/orgs/{}".format(org_name)
-        org_client = GithubOrgClient(org_name)
-        org_client.org()
-        mock_get_json.assert_called_once_with(url)
+        mock_request.return_value = expected
+        org_client = GithubOrgClient(org)
+        self.assertEqual(org_client.org, expected)
+        mock_request.assert_called_once()
 
 
 if __name__ == "__main__":
