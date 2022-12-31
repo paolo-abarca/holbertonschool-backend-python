@@ -8,6 +8,7 @@ from parameterized import parameterized, parameterized_class
 from unittest.mock import PropertyMock, patch, Mock, call
 import unittest
 from fixtures import TEST_PAYLOAD
+from typing import Dict
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -22,7 +23,8 @@ class TestGithubOrgClient(unittest.TestCase):
         ]
     )
     @patch("client.get_json")
-    def test_org(self, org, expected, mock_request):
+    def test_org(self, org: str, expected: Dict[str, bool],
+                 mock_request) -> None:
         """
         test org method
         """
