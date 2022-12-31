@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 In this task you will write the unit test for utils.access_nested_map
 """
