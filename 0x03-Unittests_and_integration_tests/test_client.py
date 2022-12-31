@@ -19,7 +19,7 @@ class TestGithubOrgClient(unittest.TestCase):
         ("abc", {})
     ])
     @patch("client.get_json")
-    def test_org(self, org_name: str, expected_result: dict,
+    def test_org(self, org_name: str, expected_result: Dict,
                  mock_get_json) -> None:
         """
         implement the test_org method
